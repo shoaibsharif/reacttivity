@@ -1,4 +1,5 @@
 using Application.Context;
+using Application.Queries;
 using Application.Seeders;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,10 @@ builder.Services.AddCors(options =>
               .WithOrigins("http://localhost:3000");
     });
 });
+
+builder.Services.AddMediatR(x =>
+    x.RegisterServicesFromAssemblyContaining<GetActivityList.Handler>()
+);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
